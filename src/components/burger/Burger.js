@@ -1,46 +1,28 @@
 import React from 'react';
+
 import classes from './Burger.module.css';
-import BurgerIngredient from './BurgerIngredients/BurgerIngredients';
-import {withRouter} from 'react-router-dom';
+import BurgerIngredient from './BurgerIngredient/BurgerIngredient';
 
-
-
-
-const burger=(props)=>{
-    console.log(props.ingredients);
-    
-    let transformedIngredients=Object.keys(props.ingredients)
-    .map(igKey=>{
-        console.log((props.ingredients))
-        return[...Array(props.ingredients[igKey])].map((_, i)=>{
-            // console.log(...Array(props.ingredients[igKey]));
-            
-            // console.log([...Array(props.ingredients)])
-            // console.log(igKey,'i')
-            // console.log(props.ingredients[igKey],'cnjkhbiu')
-
-           return <BurgerIngredient key={igKey + i} type={igKey}/>
-            });        
-    })
-    
-    .reduce((igKey,el)=>{
-      return igKey.concat(el)
-    },[]);
-    
-    // console.log(...Array(props.ingredients[igKey]))
-    console.log(transformedIngredients,'transformedingredients')
-    if(transformedIngredients.length==0)
-    transformedIngredients=<p>please add ingredients</p>
-
-    
-    return(
+const burger = ( props ) => {
+    let transformedIngredients = Object.keys( props.ingredients )
+        .map( igKey => {
+            return [...Array( props.ingredients[igKey] )].map( ( _, i ) => {
+                return <BurgerIngredient key={igKey + i} type={igKey} />;
+            } );
+        } )
+        .reduce((arr, el) => {
+            return arr.concat(el)
+        }, []);
+    if (transformedIngredients.length === 0) {
+        transformedIngredients = <p>Please start adding ingredients!</p>;
+    }
+    return (
         <div className={classes.Burger}>
-            <BurgerIngredient type="bread-top"/>
+            <BurgerIngredient type="bread-top" />
             {transformedIngredients}
-            <BurgerIngredient type="bread-bottom"/>
-            
+            <BurgerIngredient type="bread-bottom" />
         </div>
-        
-    )
-}
-export default withRouter(burger);
+    );
+};
+
+export default burger;

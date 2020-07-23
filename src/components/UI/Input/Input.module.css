@@ -25,7 +25,8 @@
     outline: none;
     background-color: #ccc;
 }
-.Invalid{
+
+.Invalid {
     border: 1px solid red;
-    background-color: rgb(241, 95, 95);
+    background-color: #FDA49A;
 }
